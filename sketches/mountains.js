@@ -1,14 +1,4 @@
-/**
- *  Re-group the FFT into more meaningful values by 
- *  splitting into one-third-octave bands,
- *  and by smoothing each point with its neighbors.
- *  
- *  Plot over time.
- */
-
 var source, fft;
-
-// height of fft == height/divisions
 var divisions = 2;
 var cnv;
 var speed = 12;
@@ -35,13 +25,10 @@ function draw() {
   var len = scaledSpectrum.length;
 
   background(0,30,0,10);
-  // copy before clearing the background
   copy(cnv,0,0,width,height,0,speed,width,height);
 
-  // draw shape
   beginShape();
 
-    // one at the far corner
     curveVertex(0, h);
 
     for (var i = 0; i < len; i++) {
@@ -51,7 +38,6 @@ function draw() {
       curveVertex(x, y);
     }
 
-    // one last point at the end
     curveVertex(width, h);
 
   endShape();

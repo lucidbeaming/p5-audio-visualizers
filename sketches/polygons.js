@@ -1,12 +1,7 @@
-/*
-  Analyze the frequency spectrum with FFT (Fast Fourier Transform)
-  Draw a 1024 particles system that represents bins of the FFT frequency spectrum. 
+// Based on code from Jason Sigal
+// https://github.com/therewasaguy/p5-music-viz
 
-  Example by Jason Sigal
- */
-
-var mic; // input sources, press T to toggleInput()
-
+var mic; 
 var fft;
 var smoothing = 0.9; // play with this, between 0 and .99
 var binCount = 512; // size of resulting FFT array. Must be a power of 2 between 16 an 1024
