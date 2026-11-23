@@ -94,3 +94,84 @@ body {
 		transition:none;
 	}
 }
+
+.hud {
+	position:fixed;
+	top:1em;
+	left:1em;
+	max-width:calc(100vw - 2em);
+	padding:0.75em 1em;
+	background:rgba(0,0,0,0.7);
+	color:#fff;
+	font:0.875rem/1.4 system-ui, sans-serif;
+	border-radius:0.25em;
+	transition:opacity 0.6s;
+}
+
+.hud.idle {
+	opacity:0;
+}
+
+.hud-name {
+	margin:0 0 0.5em;
+	font-size:1.25rem;
+	font-weight:600;
+}
+
+.hud-level {
+	width:12em;
+	max-width:100%;
+	height:0.4em;
+	background:#333;
+	border-radius:0.2em;
+	overflow:hidden;
+}
+
+.hud-level div {
+	height:100%;
+	width:0;
+	background:#6c6;
+}
+
+.hud-level.clipping div {
+	background:#e55;
+}
+
+.hud-frozen {
+	margin:0.5em 0 0;
+	color:#9cf;
+	font-weight:600;
+}
+
+.hud-keys {
+	display:grid;
+	grid-template-columns:auto 1fr;
+	gap:0.15em 0.75em;
+	margin:0.75em 0 0;
+}
+
+.hud-keys dt {
+	font-weight:600;
+	white-space:nowrap;
+}
+
+.hud-keys dd {
+	margin:0;
+	color:#ccc;
+}
+
+.hide-ui,
+.hide-ui canvas {
+	cursor:none;
+}
+
+.hide-ui .hud,
+.hide-ui .sensitivity {
+	display:none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hud {
+		transition:none;
+	}
+}

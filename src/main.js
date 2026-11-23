@@ -6,6 +6,7 @@
 import * as audio from './audio.js';
 import { showGate } from './gate.js';
 import { initSensitivity } from './sensitivity.js';
+import { initControls } from './controls.js';
 import conical from './sketches/conical.js';
 import polygons from './sketches/polygons.js';
 import mountains from './sketches/mountains.js';
@@ -28,8 +29,11 @@ function sketchFromUrl() {
 
 new p5((p) => {
   let current;
+  let currentName;
 
   function use(name) {
+    // A frozen frame would hide the sketch being switched to.
+    p.loop();
     // Back to p5's default styles, so one sketch's settings don't leak
     // into the next.
     p.fill(255);
@@ -38,6 +42,7 @@ new p5((p) => {
     p.background(0);
     current = SKETCHES[name](p, audio);
     if (current.setup) current.setup();
+    currentName = name;
     document.title = name + ' · p5 audio visualizers';
   }
 
@@ -45,7 +50,18 @@ new p5((p) => {
     p.createCanvas(p.windowWidth, p.windowHeight);
     use(sketchFromUrl());
     window.addEventListener('hashchange', () => use(sketchFromUrl()));
-    showGate(NAMES, initSensitivity);
+    showGate(NAMES, () => {
+      initSensitivity();
+      initControls({
+        names: NAMES,
+        current: () => currentName,
+        select: (name) => { location.hash = name; },
+        toggleFreeze: () => {
+          if (p.isLooping()) p.noLoop(); else p.loop();
+          return !p.isLooping();
+        },
+      });
+    });
   };
 
   p.draw = () => current.draw();
