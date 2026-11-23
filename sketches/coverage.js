@@ -24,28 +24,23 @@
 // SOFTWARE.
 
 var mic;
-var amplitude;
-var n;
-var c;
 var cul=255;
 var porky=0;
 
 function setup() {
 
-    c = createCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth, windowHeight);
     background(0);
     mic = new p5.AudioIn();
     audioGate(mic);
-    amplitude = new p5.Amplitude();
 }
 
 function draw() {
     translate(width / 2, height / 2);
     for (var i = 0; i < 7; i++) {
-        micLevel = mic.getLevel(.6);
-        bigly = map(micLevel, 0, 1, 20, height / 2);
+        var micLevel = mic.getLevel(.6);
         rotate(1.047198);
-        newTree(bigly);
+        newTree(map(micLevel, 0, 1, 20, height / 2));
     }
 
 }
@@ -93,4 +88,9 @@ function branch(h) {
             pop(); // Whenever we get back here, we "pop" in order to restore the previous matrix state
         }
     }
+}
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+    background(0);
 }

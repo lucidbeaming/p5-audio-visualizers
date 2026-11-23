@@ -1,34 +1,33 @@
-var mic;
-function setup(){
+var mic, fft;
+
+function setup() {
   createCanvas(windowWidth, windowHeight);
+  noFill();
   mic = new p5.AudioIn();
   audioGate(mic);
 
-  fft = new p5.FFT(0.90,64);
+  fft = new p5.FFT(0.90, 64);
   fft.setInput(mic);
 }
-function draw(){
+
+function draw() {
   background(0);
-  
   var spectrum = fft.analyze();
-  noFill();
-  
-  smooth(1);
-  micLevel = mic.getLevel();
-  for (var i = 0; i< spectrum.length; i++){
 
-    var x = map(i, 0, spectrum.length, 0, width);
+  // Off-centre by 150, -100 px at 1280x800, scaled to the window.
+  var cx = width / 2 + width * 0.1171875;
+  var cy = height / 2 - height * 0.125;
+
+  for (var i = 0; i < spectrum.length; i++) {
     var h = map(spectrum[i], 0, 255, 0, 300);
-    var pees = map(h,0,300,3,30);
-    var redd= ((i+1)/spectrum.length)*100;
-    stroke(redd,50+i,175-(i*3));
-    rotate((i/spectrum.length)/30);
-    polygon((width/2)+150, (height/2)-100, h, pees)
+    var sides = map(h, 0, 300, 3, 30);
+    var red = ((i + 1) / spectrum.length) * 100;
+    stroke(red, 50 + i, 175 - (i * 3));
+    rotate((i / spectrum.length) / 30);
+    polygon(cx, cy, h, sides);
   }
+}
 
-  
-//  noFill();
-  stroke(0,175,0);
-//  ellipse(width/2, height/2, constrain(height-micLevel*height*5, 0, height), constrain(height-micLevel*height*5, 0, height));
-
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
