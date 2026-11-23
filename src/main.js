@@ -7,10 +7,10 @@ import * as audio from './audio.js';
 import { showGate } from './gate.js';
 import { initSensitivity } from './sensitivity.js';
 import { initControls } from './controls.js';
-import conical from './sketches/conical.js';
-import polygons from './sketches/polygons.js';
-import mountains from './sketches/mountains.js';
-import coverage from './sketches/coverage.js';
+import * as conical from './sketches/conical.js';
+import * as polygons from './sketches/polygons.js';
+import * as mountains from './sketches/mountains.js';
+import * as coverage from './sketches/coverage.js';
 
 const SKETCHES = { conical, polygons, mountains, coverage };
 const NAMES = Object.keys(SKETCHES);
@@ -40,7 +40,7 @@ new p5((p) => {
     p.stroke(0);
     p.strokeWeight(1);
     p.background(0);
-    current = SKETCHES[name](p, audio);
+    current = SKETCHES[name].default(p, audio);
     if (current.setup) current.setup();
     currentName = name;
     document.title = name + ' · p5 audio visualizers';
@@ -50,7 +50,7 @@ new p5((p) => {
     p.createCanvas(p.windowWidth, p.windowHeight);
     use(sketchFromUrl());
     window.addEventListener('hashchange', () => use(sketchFromUrl()));
-    showGate(NAMES, () => {
+    showGate(NAMES.map((name) => ({ name, description: SKETCHES[name].description })), () => {
       initSensitivity();
       initControls({
         names: NAMES,

@@ -7,6 +7,8 @@ import { logBands, smoothBands } from '../lib/bands.js';
 const SCROLL = 12;          // px the old ridges move down per frame
 const BANDS_PER_OCTAVE = 6;
 
+export const description = 'A spectrum ridge that scrolls down the screen, leaving a range of ridgelines behind it.';
+
 export default function mountains(p, audio) {
   const fft = audio.fft(0.6, 1024);
 

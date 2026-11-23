@@ -1,6 +1,8 @@
 // Rotating FFT polygons that spiral out from an off-centre point.
 import { polygon } from '../lib/polygon.js';
 
+export const description = 'Rotating FFT polygons that spiral out from an off-centre point.';
+
 export default function conical(p, audio) {
   const fft = audio.fft(0.9, 64);
 
