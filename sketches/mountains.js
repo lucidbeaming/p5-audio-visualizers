@@ -10,7 +10,7 @@ function setup() {
   noFill();
   stroke(255,220);
   source = new p5.AudioIn();
-  source.start();
+  audioGate(source);
 
   fft = new p5.FFT(0.6, 1024);
   fft.setInput(source);
