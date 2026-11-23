@@ -1,9 +1,10 @@
 // Performance controls: keys for switching sketches, fullscreen, hiding the
 // UI and freezing the frame, plus a small overlay with the sketch name, an
-// input level meter and the key hints. The overlay fades after a few
+// input level meter, the input picker and the key hints. The overlay fades after a few
 // seconds without mouse movement or a key press; H hides it (and the
 // cursor) until H is pressed again.
 import { level } from './audio.js';
+import { createInputPicker } from './input-picker.js';
 
 const IDLE_MS = 3000;
 const METER_FLOOR_DB = -60;
@@ -15,6 +16,7 @@ const KEY_HINTS = [
   ['H', 'hide the UI and cursor'],
   ['Space', 'freeze the frame'],
   ['+ −', 'sensitivity'],
+  ['Drop', 'an audio file to play it'],
 ];
 
 // player: { names, current(), select(name), toggleFreeze() → frozen }
@@ -47,7 +49,7 @@ export function initControls(player) {
     keys.append(dt, dd);
   }
 
-  hud.append(name, meter, frozen, keys);
+  hud.append(name, meter, createInputPicker(), frozen, keys);
   document.body.appendChild(hud);
 
   let idleTimer;
