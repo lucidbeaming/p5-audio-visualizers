@@ -94,9 +94,9 @@ The panel in the top-left corner shows the sketch, an input level meter and an *
 
 ## License
 
-[GPL-3.0-or-later](LICENSE).
+[MIT](LICENSE). Release 1.0.0 was published under GPL-3.0-or-later, and those copies keep that license.
 
-`coverage` adapts `branch()` from the stochastic tree example in Daniel Shiffman's [The Nature of Code examples](https://github.com/shiffman/The-Nature-of-Code-Examples), under the MIT License (GPL-compatible). Its copyright and permission notice is kept in [`src/sketches/coverage.js`](src/sketches/coverage.js).
+`coverage` adapts `branch()` from the stochastic tree example in Daniel Shiffman's [The Nature of Code examples](https://github.com/shiffman/The-Nature-of-Code-Examples), also under the MIT License. Its copyright and permission notice is kept in [`src/sketches/coverage.js`](src/sketches/coverage.js).
 
 `polygons` and `mountains` are inspired by Jason Sigal's [p5-music-viz](https://github.com/therewasaguy/p5-music-viz) workshop demos (the FFT particle system and "Unknown Pleasures"). They were rewritten from scratch, because that repo doesn't state a license.
 
