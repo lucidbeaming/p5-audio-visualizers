@@ -26,6 +26,8 @@
 
 // Recursive branching trees that grow with the input level and slowly
 // cover the screen, switching between white and black every 5000 trees.
+export const description = 'Branching trees that grow with the input level and slowly cover the screen.';
+
 export default function coverage(p, audio) {
     let cul = 255;
     let porky = 0;

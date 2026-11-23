@@ -6,6 +6,8 @@ import { polygon } from '../lib/polygon.js';
 
 const BINS = 512;
 
+export const description = 'Falling polygons, one per frequency bin, that grow and slow with the sound.';
+
 export default function polygons(p, audio) {
   const fft = audio.fft(0.9, BINS);
   const shapes = [];
