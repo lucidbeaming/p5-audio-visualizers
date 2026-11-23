@@ -21,20 +21,19 @@ function audioGate(input) {
     button.disabled = true;
     message.textContent = '';
 
-    // p5.sound 0.3.2 only knows the legacy callback API, which Safari
-    // doesn't have. Point it at mediaDevices.getUserMedia instead.
-    if (!navigator.getUserMedia && navigator.mediaDevices) {
-      navigator.getUserMedia = function (constraints, onStream, onError) {
-        navigator.mediaDevices.getUserMedia(constraints).then(onStream, onError);
-      };
-    }
-    if (!navigator.getUserMedia) {
+    if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
       fail('This browser can’t capture audio. Serve the page over HTTPS or from localhost.');
       return;
     }
 
+    // p5.sound 1.0.1's level meter expects stereo and stops working when
+    // Firefox passes a mono mic through as one channel. Upmixing at the
+    // input's output node keeps getLevel() alive in every browser.
+    input.output.channelCount = 2;
+    input.output.channelCountMode = 'explicit';
+
     message.textContent = 'Waiting for microphone permission…';
-    getAudioContext().resume().then(function () {
+    userStartAudio().then(function () {
       input.start(function () {
         gate.remove();
       }, function (err) {
