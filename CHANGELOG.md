@@ -5,6 +5,7 @@ All notable changes to this project are documented here. The format is based on 
 ## [Unreleased]
 
 ### Added
+- Input sensitivity control: `+`/`-` adjust the mic gain in 2 dB steps (default +20 dB), shown in a fading label and remembered across sketches (#13)
 - GPL-3.0 license and a License section in the README (#1)
 - `.gitignore` for OS, editor, environment and screen-capture files (#2)
 

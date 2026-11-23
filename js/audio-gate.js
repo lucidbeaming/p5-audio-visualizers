@@ -36,6 +36,7 @@ function audioGate(input) {
     userStartAudio().then(function () {
       input.start(function () {
         gate.remove();
+        sensitivity(input);
       }, function (err) {
         fail(err && err.name === 'NotAllowedError'
           ? 'Microphone access was blocked. Allow it in the browser’s site settings, then try again.'
