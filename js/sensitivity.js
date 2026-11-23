@@ -1,9 +1,9 @@
 // Input sensitivity: a gain on the p5.AudioIn, which the level meter and
 // every FFT read from. The mic is opened raw (no browser auto-gain), so
-// the default boosts it. + / = raise it, - lowers it, 2 dB per press.
+// the default boosts it (+20 dB, set by ear with music in a room). + / = raise it, - lowers it, 2 dB per press.
 // The setting is remembered across sketches.
 var SENSITIVITY_KEY = 'p5-audio-visualizers.sensitivityDb';
-var SENSITIVITY_DEFAULT_DB = 12;
+var SENSITIVITY_DEFAULT_DB = 20;
 var SENSITIVITY_MIN_DB = -12;
 var SENSITIVITY_MAX_DB = 36;
 var SENSITIVITY_STEP_DB = 2;
