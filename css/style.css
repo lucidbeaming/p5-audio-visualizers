@@ -39,3 +39,27 @@ body, html {
 .audio-gate p:empty {
 	display:none;
 }
+
+.sensitivity {
+	position:fixed;
+	right:1em;
+	bottom:1em;
+	padding:0.5em 0.75em;
+	background:rgba(0,0,0,0.7);
+	color:#fff;
+	font:1rem/1.4 system-ui, sans-serif;
+	border-radius:0.25em;
+	opacity:0;
+	transition:opacity 0.4s;
+	pointer-events:none;
+}
+
+.sensitivity.visible {
+	opacity:1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.sensitivity {
+		transition:none;
+	}
+}
