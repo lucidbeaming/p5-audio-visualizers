@@ -4,6 +4,11 @@ All notable changes to this project are documented here. The format is based on 
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-11-23
+
+### Changed
+- Relicensed from GPL-3.0 to MIT; earlier releases keep GPL-3.0 (#25)
+
 ## [1.0.0] - 2026-11-22
 
 The 2017 sketches, finished: one player page with all four sketches, a gallery start screen, performance controls, any mic or an audio file as input, and a live demo on GitHub Pages.
@@ -29,5 +34,6 @@ The 2017 sketches, finished: one player page with all four sketches, a gallery s
 - Audio never started in current browsers: a click-to-start overlay resumes the audio context and starts the mic, with a message when the mic is blocked or missing (#5)
 - Sketch defects: `conical` and `coverage` now resize with the window (`mountains` since #8), `conical`'s off-centre composition scales with the window, every page has its own meta description, and leaked globals and dead code are removed (#6)
 
-[Unreleased]: https://github.com/lucidbeaming/p5-audio-visualizers/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/lucidbeaming/p5-audio-visualizers/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/lucidbeaming/p5-audio-visualizers/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/lucidbeaming/p5-audio-visualizers/compare/v0-2017...v1.0.0
