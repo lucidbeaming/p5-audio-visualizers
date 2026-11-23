@@ -3,8 +3,14 @@ body, html {
 	margin:0;
 }
 
-.container {
+body {
+	background:#000;
+	color:#fff;
+}
+
+.noscript {
 	padding:2em;
+	font:1.125rem/1.4 system-ui, sans-serif;
 }
 .audio-gate {
 	position:fixed;
@@ -38,6 +44,31 @@ body, html {
 
 .audio-gate p:empty {
 	display:none;
+}
+
+.audio-gate ul {
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:center;
+	gap:0.5em 1.5em;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+.audio-gate a {
+	color:#cde;
+}
+
+.audio-gate a[aria-current] {
+	color:#fff;
+	font-weight:600;
+	text-decoration-thickness:2px;
+}
+
+.audio-gate a:focus-visible {
+	outline:3px solid #6cf;
+	outline-offset:3px;
 }
 
 .sensitivity {
