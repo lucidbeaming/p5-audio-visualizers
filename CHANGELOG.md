@@ -4,6 +4,9 @@ All notable changes to this project are documented here. The format is based on 
 
 ## [Unreleased]
 
+### Changed
+- Relicensed from GPL-3.0 to MIT; earlier releases keep GPL-3.0 (#25)
+
 ## [1.0.0] - 2026-11-22
 
 The 2017 sketches, finished: one player page with all four sketches, a gallery start screen, performance controls, any mic or an audio file as input, and a live demo on GitHub Pages.
