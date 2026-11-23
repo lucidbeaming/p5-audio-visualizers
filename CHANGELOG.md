@@ -8,5 +8,8 @@ All notable changes to this project are documented here. The format is based on 
 - GPL-3.0 license and a License section in the README (#1)
 - `.gitignore` for OS, editor, environment and screen-capture files (#2)
 
+### Changed
+- `polygons` and `mountains` rewritten as original code, inspired by but no longer copied from Jason Sigal's unlicensed p5-music-viz demos; shared original `polygon()` helper; MIT notice added for the Nature of Code code in `coverage` (#8)
+
 ### Fixed
 - Audio never started in current browsers: a click-to-start overlay resumes the audio context and starts the mic, with a message when the mic is blocked or missing; Safari's missing legacy `getUserMedia` is shimmed (#5)
