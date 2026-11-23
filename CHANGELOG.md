@@ -13,3 +13,4 @@ All notable changes to this project are documented here. The format is based on 
 
 ### Fixed
 - Audio never started in current browsers: a click-to-start overlay resumes the audio context and starts the mic, with a message when the mic is blocked or missing; Safari's missing legacy `getUserMedia` is shimmed (#5)
+- Sketch defects: `conical` and `coverage` now resize with the window (`mountains` since #8), `conical`'s off-centre composition scales with the window, every page has its own meta description, and leaked globals and dead code are removed (#6)
