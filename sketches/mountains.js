@@ -1,133 +1,70 @@
-var source, fft;
-var divisions = 2;
-var cnv;
-var speed = 12;
+// A spectrum ridge that scrolls down the screen each frame, leaving a
+// range of fading ridgelines behind it.
+// Inspired by Jason Sigal's "Unknown Pleasures" demo in p5-music-viz
+// (https://github.com/therewasaguy/p5-music-viz). This is a rewrite, not his code.
+
+var source, fft, cnv;
+var SCROLL = 12;          // px the old ridges move down per frame
+var BANDS_PER_OCTAVE = 6;
 
 function setup() {
-  background(0,0,0);
-
   cnv = createCanvas(windowWidth, windowHeight);
+  background(0);
   noFill();
-  stroke(255,220);
+  stroke(255, 220);
+
   source = new p5.AudioIn();
   audioGate(source);
-
   fft = new p5.FFT(0.6, 1024);
   fft.setInput(source);
 }
 
 function draw() {
-  var h = height/divisions;
-  var spectrum = fft.analyze();
-  var newBuffer = [];
+  var bands = smoothBands(logBands(fft.analyze(), BANDS_PER_OCTAVE), 2);
+  var base = height / 2;
 
-  var scaledSpectrum = splitOctaves(spectrum, 6);
-  var len = scaledSpectrum.length;
-
-  background(0,30,0,10);
-  copy(cnv,0,0,width,height,0,speed,width,height);
+  background(0, 30, 0, 10);
+  copy(cnv, 0, 0, width, height, 0, SCROLL, width, height);
 
   beginShape();
-
-    curveVertex(0, h);
-
-    for (var i = 0; i < len; i++) {
-      var point = smoothPoint(scaledSpectrum, i, 2);
-      var x = map(i, 0, len-1, 0, width);
-      var y = map(point, 0, 255, h, 0);
-      curveVertex(x, y);
-    }
-
-    curveVertex(width, h);
-
+  curveVertex(0, base);
+  for (var i = 0; i < bands.length; i++) {
+    curveVertex(i / (bands.length - 1) * width, base - bands[i] / 255 * base);
+  }
+  curveVertex(width, base);
   endShape();
 }
 
-
-/**
- *  Divides an fft array into octaves with each
- *  divided by three, or by a specified "slicesPerOctave".
- *  
- *  There are 10 octaves in the range 20 - 20,000 Hz,
- *  so this will result in 10 * slicesPerOctave + 1
- *
- *  @method splitOctaves
- *  @param {Array} spectrum Array of fft.analyze() values
- *  @param {Number} [slicesPerOctave] defaults to thirds
- *  @return {Array} scaledSpectrum array of the spectrum reorganized by division
- *                                 of octaves
- */
-function splitOctaves(spectrum, slicesPerOctave) {
-  var scaledSpectrum = [];
-  var len = spectrum.length;
-
-  // default to thirds
-  var n = slicesPerOctave|| 3;
-  var nthRootOfTwo = Math.pow(2, 1/n);
-
-  // the last N bins get their own 
-  var lowestBin = slicesPerOctave;
-
-  var binIndex = len - 1;
-  var i = binIndex;
-
-
-  while (i > lowestBin) {
-    var nextBinIndex = round( binIndex/nthRootOfTwo );
-
-    if (nextBinIndex === 1) return;
-
-    var total = 0;
-    var numBins = 0;
-
-    // add up all of the values for the frequencies
-    for (i = binIndex; i > nextBinIndex; i--) {
-      total += spectrum[i];
-      numBins++;
-    }
-
-    // divide total sum by number of bins
-    var energy = total/numBins;
-    scaledSpectrum.push(energy);
-
-    // keep the loop going
-    binIndex = nextBinIndex;
+// Averages FFT bins into bands of equal musical width (a fixed fraction
+// of an octave), low to high. Each band's top edge is its bottom edge
+// times 2^(1/perOctave), but at least one bin wide, so the lowest bands
+// are single bins. Bin 0 (DC) is skipped.
+function logBands(spectrum, perOctave) {
+  var ratio = Math.pow(2, 1 / perOctave);
+  var bands = [];
+  var lo = 1;
+  while (lo < spectrum.length) {
+    var hi = Math.min(spectrum.length, Math.max(lo + 1, Math.round(lo * ratio)));
+    var sum = 0;
+    for (var b = lo; b < hi; b++) sum += spectrum[b];
+    bands.push(sum / (hi - lo));
+    lo = hi;
   }
-
-  // add the lowest bins at the end
-  for (var j = i; j > 0; j--) {
-    scaledSpectrum.push(spectrum[j]);
-  }
-
-  // reverse so that array has same order as original array (low to high frequencies)
-  scaledSpectrum.reverse();
-
-  return scaledSpectrum;
+  return bands;
 }
 
+// Moving average over `radius` values on each side, clipped at the ends.
+function smoothBands(values, radius) {
+  return values.map(function (_, i) {
+    var from = Math.max(0, i - radius);
+    var to = Math.min(values.length - 1, i + radius);
+    var sum = 0;
+    for (var j = from; j <= to; j++) sum += values[j];
+    return sum / (to - from + 1);
+  });
+}
 
-// average a point in an array with its neighbors
-function smoothPoint(spectrum, index, numberOfNeighbors) {
-
-  // default to 2 neighbors on either side
-  var neighbors = numberOfNeighbors || 2;
-  var len = spectrum.length;
-
-  var val = 0;
-
-  // start below the index
-  var indexMinusNeighbors = index - neighbors;
-  var smoothedPoints = 0;
-
-  for (var i = indexMinusNeighbors; i < (index+neighbors) && i < len; i++) {
-    // if there is a point at spectrum[i], tally it
-    if (typeof(spectrum[i]) !== 'undefined') {
-      val += spectrum[i];
-      smoothedPoints++;
-    }
-  }
-
-  val = val/smoothedPoints;
-
-  return val;
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  background(0);
 }
