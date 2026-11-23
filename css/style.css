@@ -175,3 +175,38 @@ body {
 		transition:none;
 	}
 }
+
+.audio-gate button.secondary {
+	background:transparent;
+	color:#fff;
+	border:1px solid #fff;
+	padding:0.5em 1.25em;
+}
+
+.hud-input {
+	display:flex;
+	flex-wrap:wrap;
+	align-items:center;
+	gap:0.25em 0.5em;
+	margin-top:0.75em;
+}
+
+.hud-input select {
+	font:inherit;
+	max-width:16em;
+}
+
+.hud-input select:focus-visible {
+	outline:3px solid #6cf;
+	outline-offset:2px;
+}
+
+.hud-input-status {
+	flex-basis:100%;
+	margin:0;
+	color:#fc9;
+}
+
+.hud-input-status:empty {
+	display:none;
+}

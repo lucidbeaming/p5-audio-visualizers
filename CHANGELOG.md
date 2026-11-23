@@ -5,6 +5,7 @@ All notable changes to this project are documented here. The format is based on 
 ## [Unreleased]
 
 ### Added
+- Input picker in the overlay (default mic, other audio inputs, or an audio file), drag and drop an audio file anywhere, and a "Play an audio file instead" start option, so the sketches work without a mic (#17)
 - Performance keys: `←`/`→` and `1`–`4` switch sketches, `F` fullscreen, `H` hides the UI and cursor, `Space` freezes the frame; a fading overlay shows the sketch name, an input level meter and the keys (#17)
 - Input sensitivity control: `+`/`-` adjust the mic gain in 2 dB steps (default +20 dB), shown in a fading label and remembered across sketches (#13)
 - GPL-3.0 license and a License section in the README (#1)
