@@ -13,7 +13,7 @@ function setup() {
   noFill();
 
   mic = new p5.AudioIn();
-  mic.start();
+  audioGate(mic);
 
   // initialize the FFT, plug in our variables for smoothing and binCount
   fft = new p5.FFT(smoothing, binCount);

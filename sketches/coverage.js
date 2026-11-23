@@ -13,7 +13,7 @@ function setup() {
     c = createCanvas(windowWidth, windowHeight);
     background(0);
     mic = new p5.AudioIn();
-    mic.start();
+    audioGate(mic);
     amplitude = new p5.Amplitude();
 }
 

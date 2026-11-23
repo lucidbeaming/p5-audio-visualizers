@@ -2,7 +2,7 @@ var mic;
 function setup(){
   createCanvas(windowWidth, windowHeight);
   mic = new p5.AudioIn();
-  mic.start();
+  audioGate(mic);
 
   fft = new p5.FFT(0.90,64);
   fft.setInput(mic);
