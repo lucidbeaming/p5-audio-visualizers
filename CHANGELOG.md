@@ -4,7 +4,7 @@ All notable changes to this project are documented here. The format is based on 
 
 ## [Unreleased]
 
-## [1.0.2] - 2026-11-23
+## [1.0.2] - 2026-11-24
 
 The live demo moved to [lucidbeaming.com/art/code/p5-audio-visualizers/demo/](https://lucidbeaming.com/art/code/p5-audio-visualizers/demo/), copied from each release; the GitHub Pages address forwards there. The sketches are unchanged.
 
