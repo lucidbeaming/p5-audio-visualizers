@@ -4,6 +4,9 @@ All notable changes to this project are documented here. The format is based on 
 
 ## [Unreleased]
 
+### Changed
+- The live demo moved to https://lucidbeaming.com/art/code/p5-audio-visualizers/demo/; the GitHub Pages address forwards there, keeping the path and sketch (`pages-redirect/`, published to the `gh-pages` branch) (#27)
+
 ## [1.0.1] - 2026-11-23
 
 ### Changed

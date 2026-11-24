@@ -2,7 +2,9 @@
 
 Fullscreen audio-reactive p5.js sketches.
 
-**[Open the live demo](https://lucidbeaming.github.io/p5-audio-visualizers/)**
+**[Open the live demo](https://lucidbeaming.com/art/code/p5-audio-visualizers/demo/)**
+
+Documentation: [lucidbeaming.com/art/code/p5-audio-visualizers](https://lucidbeaming.com/art/code/p5-audio-visualizers)
 
 | conical | polygons |
 |---|---|

@@ -1,0 +1,31 @@
+<!doctype html>
+<!--
+  The live demo moved from GitHub Pages to lucidbeaming.com. GitHub Pages can't send real
+  redirects, so this page (published to the gh-pages branch as both index.html and 404.html)
+  points search engines at the new URL with a canonical link and sends visitors there with a
+  meta refresh. The script keeps the path and the #sketch, so an old link such as
+  /p5-audio-visualizers/#mountains opens the same sketch.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>p5 audio visualizers have moved</title>
+    <link rel="canonical" href="https://lucidbeaming.com/art/code/p5-audio-visualizers/demo/" />
+    <meta http-equiv="refresh" content="0; url=https://lucidbeaming.com/art/code/p5-audio-visualizers/demo/" />
+    <script>
+      location.replace(
+        'https://lucidbeaming.com/art/code/p5-audio-visualizers/demo/' +
+          location.pathname.replace(/^\/p5-audio-visualizers\/?/, '').replace(/^index\.html$/, '') +
+          location.search +
+          location.hash
+      );
+    </script>
+  </head>
+  <body>
+    <p>
+      The p5 audio visualizers have moved to
+      <a href="https://lucidbeaming.com/art/code/p5-audio-visualizers/demo/">lucidbeaming.com/art/code/p5-audio-visualizers/demo/</a>.
+    </p>
+  </body>
+</html>
