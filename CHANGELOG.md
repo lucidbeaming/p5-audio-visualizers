@@ -4,6 +4,10 @@ All notable changes to this project are documented here. The format is based on 
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-11-23
+
+The live demo moved to [lucidbeaming.com/art/code/p5-audio-visualizers/demo/](https://lucidbeaming.com/art/code/p5-audio-visualizers/demo/), copied from each release; the GitHub Pages address forwards there. The sketches are unchanged.
+
 ### Changed
 - The live demo moved to https://lucidbeaming.com/art/code/p5-audio-visualizers/demo/; the GitHub Pages address forwards there, keeping the path and sketch (`pages-redirect/`, published to the `gh-pages` branch) (#27)
 
@@ -37,6 +41,7 @@ The 2017 sketches, finished: one player page with all four sketches, a gallery s
 - Audio never started in current browsers: a click-to-start overlay resumes the audio context and starts the mic, with a message when the mic is blocked or missing (#5)
 - Sketch defects: `conical` and `coverage` now resize with the window (`mountains` since #8), `conical`'s off-centre composition scales with the window, every page has its own meta description, and leaked globals and dead code are removed (#6)
 
-[Unreleased]: https://github.com/lucidbeaming/p5-audio-visualizers/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/lucidbeaming/p5-audio-visualizers/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/lucidbeaming/p5-audio-visualizers/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/lucidbeaming/p5-audio-visualizers/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/lucidbeaming/p5-audio-visualizers/compare/v0-2017...v1.0.0
